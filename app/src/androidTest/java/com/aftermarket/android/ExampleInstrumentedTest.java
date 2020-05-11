@@ -1,4 +1,4 @@
-package com.ftermarket.android;
+package com.aftermarket.android;
 
 import android.content.Context;
 
