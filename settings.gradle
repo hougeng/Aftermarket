@@ -1,0 +1,2 @@
+rootProject.name='Aftermarket'
+include ':app'
