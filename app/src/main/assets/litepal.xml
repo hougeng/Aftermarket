@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+
+    <dbname value="aftermarket" />
+
+    <version value="1" />
+
+    <list>
+        <mapping class="com.aftermarket.android.db.User" />
+        <mapping class="com.aftermarket.android.db.Order" />
+        <mapping class="com.aftermarket.android.db.Goods" />
+    </list>
+
+</litepal>
