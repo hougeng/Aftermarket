@@ -4,12 +4,13 @@ import org.litepal.crud.DataSupport;
 
 public class User extends DataSupport {
     private int id;
-    private int uid;
+    private String uid;
     private String username;
     private int user_phone;
     private String password;
     private String user_address;
     private int feature_code;
+
 
     public int getId() {
         return id;
@@ -19,11 +20,11 @@ public class User extends DataSupport {
         this.id = id;
     }
 
-    public int getUid() {
+    public String getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(String uid) {
         this.uid = uid;
     }
 
