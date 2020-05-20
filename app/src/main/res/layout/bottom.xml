@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--底边栏-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:gravity="center"
+    >
+    <LinearLayout
+        android:id="@+id/tab_address"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageButton
+            android:id="@+id/tab_address_img"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_centerHorizontal="true"
+            android:background="#ffffff"
+            android:focusable="false"
+            android:scaleType="centerInside"
+            android:src="@drawable/tab_address" />
+
+        <TextView
+            android:id="@+id/tab_address_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tab_address_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:gravity="center_vertical"
+            android:text="@string/tab_addresspage"
+            android:textColor="#9A9A9A"
+            android:textSize="12sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_orders"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+        <ImageButton
+            android:id="@+id/tab_orders_img"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_centerHorizontal="true"
+            android:background="#ffffff"
+            android:focusable="false"
+            android:scaleType="centerInside"
+            android:src="@drawable/tab_orders"
+            />
+        <TextView
+            android:id="@+id/tab_orders_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/tab_orderspage"
+            android:textColor="#9A9A9A"
+            android:textSize="12sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_qrcode"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+        <ImageButton
+            android:id="@+id/tab_qrcode_img"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_centerHorizontal="true"
+            android:background="#ffffff"
+            android:focusable="false"
+            android:scaleType="centerInside"
+            android:src="@drawable/tab_qrcode"
+            />
+        <TextView
+            android:id="@+id/tab_step_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tab_qrcode_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:gravity="center_vertical"
+            android:text="@string/tab_qrcode"
+            android:textColor="#9A9A9A"
+            android:textSize="12sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_mine"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+        <ImageButton
+            android:id="@+id/tab_mine_img"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_centerHorizontal="true"
+            android:background="#ffffff"
+            android:focusable="false"
+            android:scaleType="centerInside"
+            android:src="@drawable/tab_me"
+            />
+        <TextView
+            android:id="@+id/tab_mine_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tab_mine_img"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="3dp"
+            android:gravity="center_vertical"
+            android:text="@string/tab_my"
+            android:textColor="#9A9A9A"
+            android:textSize="12sp"
+            />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/address_layout"
+        android:layout_weight="0">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/orders_layout"
+        android:layout_weight="0" >
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/qccode_layout"
+        android:layout_weight="0">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/mine_layout"
+        android:layout_weight="0">
+
+    </FrameLayout>
+
+
+
+
+</LinearLayout>

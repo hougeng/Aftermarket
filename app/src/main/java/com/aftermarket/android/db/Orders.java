@@ -2,7 +2,7 @@ package com.aftermarket.android.db;
 
 import org.litepal.crud.DataSupport;
 
-public class Order extends DataSupport {
+public class Orders extends DataSupport {
     private int id;
     private int status;
     private int customer_id;

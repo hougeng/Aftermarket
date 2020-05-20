@@ -76,6 +76,7 @@ public class LoginActivity extends BaseActivity {
         automatic_login = (CheckBox) findViewById(R.id.automatic_login);
         et1 = (EditText) findViewById(R.id.login_user);
         et2 = (EditText) findViewById(R.id.login_password);
+        register = (Button) findViewById(R.id.register_button);
 
         rem_isCheck = remember_key.isChecked();
         atuo_isCheck = automatic_login.isChecked();
@@ -135,12 +136,20 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
+        /*注册监听按钮*/
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                register();
+            }
+        });
+
     }
 
     private void login() {
-        String username = et1.getText().toString();
-        String password = et2.getText().toString();
-        user = new User();
+        final String username = et1.getText().toString();
+        final String password = et2.getText().toString();
+        user =new User();
         user.setUsername(username);
         user.setPassword(password);
         new LoginService(this).userLogin(new Observer<JsonObject>() {
@@ -152,7 +161,11 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onNext(JsonObject jsonObject) {
                 if (jsonObject.get("welcome_msg").getAsBoolean()) {   //服务器返回welcome_msg和uid
+                    User user = new User();
                     user.setUid(jsonObject.get("uid").getAsString());
+                    user.setUsername(username);
+                    user.setPassword(password);
+                    user.save();
                     Log.e("chenggolng", "welcome_msg" + jsonObject.get("welcom_msg"));
 
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
@@ -178,6 +191,45 @@ public class LoginActivity extends BaseActivity {
             }
 
         }, user);
+
+    }
+
+    private void register() {
+        String username = et1.getText().toString();
+        String password = et2.getText().toString();
+        user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+
+        new LoginService(this).userRegister(new Observer<JsonObject>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(JsonObject jsonObject) {
+                if(jsonObject.get("welcome_msg").getAsBoolean()) {
+                    Toast.makeText(getApplicationContext(),"注册成功",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getApplicationContext(),"注册失败\n用户名已经存在",Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        },user);
 
     }
 }
