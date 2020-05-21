@@ -25,7 +25,7 @@ import com.aftermarket.android.fgment.QrcodeFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener{
+public class MainActivity extends BaseActivity implements View.OnClickListener,MineFragment.OnFragmentInteractionListener,AddressFragment.OnFragmentInteractionListener,OrdersFragment.OnFragmentInteractionListener,QrcodeFragment.OnFragmentInteractionListener{
 
     private static final String TAG="MainActivity";
     private ViewPager viewPager;
