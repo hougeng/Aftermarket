@@ -3,13 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <ImageView
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="700dp"
-        android:src="@drawable/android_location_marker">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
 
-    </ImageView>
+        <com.tencent.tencentmap.mapsdk.maps.MapView
+            android:id="@+id/mapview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+    </RelativeLayout>
+
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="700dp"-->
+<!--        android:src="@drawable/android_location_marker">-->
+
+<!--    </ImageView>-->
 <!--    <com.google.android.gms.maps.MapView-->
 <!--        android:id="@+id/mapView"-->
 <!--        android:layout_width="wrap_content"-->

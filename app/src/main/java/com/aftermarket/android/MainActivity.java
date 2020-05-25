@@ -2,12 +2,16 @@ package com.aftermarket.android;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,14 +51,30 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,M
         setContentView(R.layout.activity_main);
         Log.e(TAG, "onCreate: "+getClass().getSimpleName());
         setContentView(R.layout.activity_main);
+
+        List<String> permissionList = new ArrayList<>();
+        if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
+            permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        }
+        if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_PHONE_STATE)!= PackageManager.PERMISSION_GRANTED){
+            permissionList.add(Manifest.permission.READ_PHONE_STATE);
+        }
+        if(ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED){
+            permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        if (!permissionList.isEmpty()) {
+            String[] permissions = permissionList.toArray(new String[permissionList.size()]);
+            ActivityCompat.requestPermissions(MainActivity.this,permissions,1);
+        }
+
         getSupportActionBar().hide(); //隐藏标题栏
         /*子线程跳主线程刷新UI*/
         new Thread(new Runnable() {
             @Override
             public void run() {
                 Log.e(TAG, "run: 切换Fragment" );
-                resetImg();
                 btnAddress = (ImageButton) findViewById(R.id.tab_address_img);
+                resetImg();
                 btnAddress.setImageResource(R.drawable.location_press);
                 replaceAddressFragment(new AddressFragment());
             }

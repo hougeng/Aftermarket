@@ -7,12 +7,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.aftermarket.android.R;
+import com.tencent.tencentmap.mapsdk.maps.MapView;
+import com.tencent.tencentmap.mapsdk.maps.TencentMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +27,9 @@ public class AddressFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private MapView mapview = null;
+    private View mapLayout;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -44,8 +50,8 @@ public class AddressFragment extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     /*在Fragment的newInstance方法中传递两个参数，并且通过fragment.setArgument保存在它自己身上*/
-    public static MineFragment newInstance(String param1, String param2) {
-        MineFragment fragment = new MineFragment();
+    public static AddressFragment newInstance(String param1, String param2) {
+        AddressFragment fragment = new AddressFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -66,8 +72,54 @@ public class AddressFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_address,container,false);
+        mapLayout=inflater.inflate(R.layout.fragment_address,container,false);
+        mapview = (MapView) mapLayout.findViewById(R.id.mapview);
+        TencentMap mTencentMap = mapview.getMap();
+//第一次渲染成功的回调
+        mTencentMap.setOnMapLoadedCallback(new TencentMap.OnMapLoadedCallback() {
+            public void onMapLoaded() {
+                //地图正常显示
+            }
+        });
+        return  mapLayout;
     }
+
+
+    @Override
+    public void onDestroy() {
+        mapview.onDestroy();
+        super.onDestroy();
+    }
+
+    @Override
+    public void onPause() {
+        mapview.onPause();
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        mapview.onResume();
+        super.onResume();
+    }
+
+    @Override
+    public void onStop() {
+        mapview.onStop();
+        super.onStop();
+    }
+
+//    /**
+//     * 方法必须重写
+//     * map的生命周期方法
+//     */
+//    @Override
+//    public void onSaveInstanceState(Bundle outState) {
+//        Log.i("sys", "mf onSaveInstanceState");
+//        super.onSaveInstanceState(outState);
+//        mapview.onSaveInstanceState(outState);
+//    }
+//
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
