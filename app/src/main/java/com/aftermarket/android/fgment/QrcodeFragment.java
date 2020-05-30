@@ -2,6 +2,7 @@ package com.aftermarket.android.fgment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -15,11 +16,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aftermarket.android.R;
 import com.github.shenyuanqing.zxingsimplify.zxing.Activity.CaptureActivity;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitmapUtils;
+
+import javax.security.auth.login.LoginException;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -84,16 +90,36 @@ public class QrcodeFragment extends Fragment {
         Button btn_scanQRCode= (Button) getActivity().findViewById(R.id.btn_scan_barcode);
         Button btn_addQRCode= (Button) getActivity().findViewById(R.id.btn_add_qrcode);
         TextView resultTextView = (TextView) getActivity().findViewById(R.id.tv_scan_result);
-        EditText edit_addQRCode = (EditText) getActivity().findViewById(R.id.et_qr_string);
+        final ImageView mImage = (ImageView) getActivity().findViewById(R.id.iv_qr_image);
+//        final EditText edit_addQRCode = (EditText) getActivity().findViewById(R.id.et_qr_string);
+        final EditText edit_addQRCode1 = (EditText) getActivity().findViewById(R.id.edit_addQRCode1);
+        final EditText edit_addQRCode2 = (EditText) getActivity().findViewById(R.id.edit_addQRCode2);
+        final EditText edit_addQRCode3 = (EditText) getActivity().findViewById(R.id.edit_addQRCode3);
+        final EditText edit_addQRCode4 = (EditText) getActivity().findViewById(R.id.edit_addQRCode4);
 
         btn_scanQRCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.e(TAG, "onClick: 点击扫描" );
 //                Intent intent = new Intent(getActivity(), CaptureActivity.class);
-//                startActivity(intent);
-                startActivityForResult(new Intent(getActivity(), CaptureActivity.class),REQUEST_SCAN);
+                 startActivityForResult(new Intent(getActivity(), CaptureActivity.class),REQUEST_SCAN);
 
+            }
+        });
+
+        btn_addQRCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e(TAG, "onClick: 点击生成" );
+                String edit_addQRCode = "设备名："+edit_addQRCode1.getText().toString()+"\n设备厂商:"+edit_addQRCode2.getText().toString()+"\n安装地址:"+edit_addQRCode3.getText().toString()+"\n电话号码:"+edit_addQRCode4.getText().toString();
+                String content = edit_addQRCode.trim();
+                Bitmap bitmap =null;
+                try {
+                    bitmap = BitmapUtils.create2DCode(content);
+                    mImage.setImageBitmap(bitmap);
+                } catch (WriterException e) {
+                    e.printStackTrace();
+                }
             }
         });
 

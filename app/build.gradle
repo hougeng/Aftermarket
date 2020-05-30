@@ -20,6 +20,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    allprojects {
+        repositories {
+            maven { url "https://jitpack.io" }
+        }
+    }
 
 }
 
@@ -53,5 +58,10 @@ dependencies {
     implementation 'com.pnikosis:materialish-progress:1.7'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation files('libs/tencent-mapsdk-4.3.4.1.b82209ae.jar')
-    compile 'com.github.shenyuanqing.zxing:zxing-simplify:1.0.5'
+    compile ('com.github.shenyuanqing.zxing:zxing-simplify:1.0.5') {
+        exclude group: 'com.google.zxing'
+    }
+    compile ('com.github.open-android:Zxing:v1.0.3') {
+        exclude group:'com.google.zxing'
+    }
 }
