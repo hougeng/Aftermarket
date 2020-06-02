@@ -5,14 +5,19 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.aftermarket.android.R;
+import com.aftermarket.android.util.DialogLogout;
+import com.mylhyl.circledialog.CircleDialog;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +29,7 @@ public class MineFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String TAG="MineFragment";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -60,6 +66,22 @@ public class MineFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (getActivity()== null )
+            return;
+        Button btn_logout = (Button) getActivity().findViewById(R.id.logout);
+
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e(TAG, "onClick: 退出登陆");
+                DialogLogout.getInstance().show(getFragmentManager(), "DialogLogout");
+            }
+        });
     }
 
     /*创建VIEW*/

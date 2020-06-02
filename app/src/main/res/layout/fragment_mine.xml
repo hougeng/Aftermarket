@@ -91,13 +91,15 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
                 android:src="@drawable/take_picture"/>
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toRightOf="@id/iv_picture"
                 android:text="照片上传"
+                android:background="#FFFFFF"
+                android:stateListAnimator="@null"
                 android:textColor="#353535"
                 android:textSize="16sp" />
             <View
@@ -123,13 +125,15 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
                 android:src="@drawable/about"/>
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toRightOf="@id/iv_shoucang"
                 android:text="关于我们"
+                android:background="#FFFFFF"
+                android:stateListAnimator="@null"
                 android:textColor="#353535"
                 android:textSize="16sp" />
 
@@ -150,13 +154,15 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
                 android:src="@drawable/help" />
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toRightOf="@id/iv_money_bag"
                 android:text="帮助与反馈"
+                android:stateListAnimator="@null"
+                android:background="#FFFFFF"
                 android:textColor="#353535"
                 android:textSize="16sp" />
             <View
@@ -183,13 +189,16 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
                 android:src="@drawable/logout" />
-            <TextView
+            <Button
+                android:id="@+id/logout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_toRightOf="@id/iv_setting"
                 android:text="退出登入"
+                android:stateListAnimator="@null"
+                android:background="#FFFFFF"
                 android:textColor="#353535"
                 android:textSize="16sp" />
 
