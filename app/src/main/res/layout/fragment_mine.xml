@@ -92,6 +92,7 @@
                 android:layout_marginLeft="12dp"
                 android:src="@drawable/take_picture"/>
             <Button
+                android:id="@+id/but_picture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -126,6 +127,7 @@
                 android:layout_marginLeft="12dp"
                 android:src="@drawable/about"/>
             <Button
+                android:id="@+id/btn_about"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
