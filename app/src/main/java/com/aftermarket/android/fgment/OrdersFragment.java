@@ -1,18 +1,33 @@
 package com.aftermarket.android.fgment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.Size;
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aftermarket.android.R;
+import com.mylhyl.circledialog.CircleDialog;
+import com.mylhyl.circledialog.callback.ConfigButton;
+import com.mylhyl.circledialog.callback.ConfigDialog;
+import com.mylhyl.circledialog.callback.ConfigSubTitle;
+import com.mylhyl.circledialog.callback.ConfigText;
+import com.mylhyl.circledialog.params.ButtonParams;
+import com.mylhyl.circledialog.params.DialogParams;
+import com.mylhyl.circledialog.params.SubTitleParams;
+import com.mylhyl.circledialog.params.TextParams;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,6 +75,57 @@ public class OrdersFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        CheckBox checkBox_getorders = (CheckBox)getActivity().findViewById(R.id.checkbox_getorders);
+
+        checkBox_getorders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new CircleDialog.Builder()
+                        .setMaxHeight(0.8f)
+                        .setCanceledOnTouchOutside(true)
+                        .setCancelable(false)
+                        .configDialog(new ConfigDialog() {
+                            @Override
+                            public void onConfig(DialogParams params) {
+
+                            }
+                        })
+                        .setTitle("确认信息！")
+                        .setSubTitle("维修地址：广东省肇庆城东区")
+                        .configSubTitle(new ConfigSubTitle() {
+                            @Override
+                            public void onConfig(SubTitleParams params) {
+                                params.isShowBottomDivider = true;
+                            }
+                        })
+                        .setText("\n\n  是否接受该订单？\n\n")
+                        .configText(new ConfigText() {
+                            @Override
+                            public void onConfig(TextParams params) {
+                                params.gravity = Gravity.CENTER |Gravity.CENTER;
+                                params.textColor = Color.BLACK;
+                                params.textSize = 30 ;
+                            }
+                        })
+                        .setNegative("取消",v ->
+                                checkBox_getorders.setChecked(false))
+                        .setPositive("确定",v ->
+                                Toast.makeText(getContext(),"你已接受订单，请及时回复客户进行服务",Toast.LENGTH_LONG).show())
+                        .configNegative(new ConfigButton() {
+                            @Override
+                            public void onConfig(ButtonParams params) {
+//                                Toast.makeText(getContext(),"queding",Toast.LENGTH_SHORT).show();
+                                params.backgroundColor = Color.RED;
+                            }
+                        })
+                        .show(getChildFragmentManager());
+            }
+        });
     }
 
     /*创建VIEW*/

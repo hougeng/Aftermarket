@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity"
@@ -27,39 +27,38 @@
                 android:layout_margin="5dp"></ImageView>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="152dp"
                 android:layout_height="100dp"
                 android:layout_margin="5dp"
-                android:orientation="vertical"
                 android:layout_weight="2"
-                >
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/text1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:textSize="25sp"
-                android:textColor="#000000"
-                android:text="打印机维修"
-                />
-            <TextView
-                android:id="@+id/text2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:textSize="13sp"
-                android:textColor="#000000"
-                android:text="城西地区"
-                />
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="打印机维修"
+                    android:textColor="#000000"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="城西地区"
+                    android:textColor="#000000"
+                    android:textSize="13sp" />
             </LinearLayout>
+
             <CheckBox
+                android:id="@+id/checkbox_getorders"
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
-                android:text="已接单"
-                android:textColor="#FF6100"
                 android:layout_weight="1"
-                />
+                android:text="已接单"
+                android:textColor="#FF6100" />
 
         </LinearLayout>
 
@@ -78,29 +77,27 @@
                 android:layout_margin="5dp"></ImageView>
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="152dp"
                 android:layout_height="100dp"
                 android:layout_margin="5dp"
-                android:orientation="vertical"
                 android:layout_weight="2"
-                >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:textSize="25sp"
-                    android:textColor="#000000"
                     android:text="电脑维修"
-                    />
+                    android:textColor="#000000"
+                    android:textSize="25sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:textSize="13sp"
-                    android:textColor="#000000"
                     android:text="城东地区"
-                    />
+                    android:textColor="#000000"
+                    android:textSize="13sp" />
             </LinearLayout>
             <CheckBox
                 android:layout_width="wrap_content"

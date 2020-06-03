@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -106,6 +107,52 @@ public class MineFragment extends Fragment {
         Button btn_picture = (Button) getActivity().findViewById(R.id.but_picture);
         Button btn_add_user_message = (Button) getActivity().findViewById(R.id.btn_add_user_message);
         Button btn_user_response = (Button) getActivity().findViewById(R.id.btn_user_response);
+
+        btn_add_user_message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CircleDialog.Builder builder = new CircleDialog.Builder();
+                builder.setTitle("个人信息增改")
+                        .setSubTitle("输入需要修改的内容，点击提交即可修改信息")
+                        .configSubTitle(params -> params.isShowBottomDivider = true)
+                        .setBodyView(R.layout.dialog_login, viewHolder -> {
+                            EditText etUser = viewHolder.findViewById(R.id.login_et_user);
+                            EditText etPwd = viewHolder.findViewById(R.id.login_et_pwd);
+
+                            viewHolder.addTextChangedListener(etUser, (s, start, before, count) ->
+                                    builder.setPositiveDisable(
+                                            TextUtils.isEmpty(etUser.getText()) || TextUtils.isEmpty(etPwd.getText())
+                                    ).refresh()
+                            );
+                            viewHolder.addTextChangedListener(etPwd, (s, start, before, count) -> {
+                                // 测试长度为3自动关闭
+                                if (s.length() == 20) {
+                                    builder.dismiss();
+                                } else {
+                                    builder.setPositiveDisable(
+                                            TextUtils.isEmpty(etUser.getText()) || TextUtils.isEmpty(etPwd.getText())
+                                    ).refresh();
+                                }
+                            });
+                        })
+                        .setPositiveDisable(true)
+                        .setPositiveBody("提交", viewHolder -> {
+                            EditText etUser = viewHolder.findViewById(R.id.login_et_user);
+                            EditText etPwd = viewHolder.findViewById(R.id.login_et_pwd);
+                            TextView tvError = viewHolder.findViewById(R.id.login_tv_error);
+
+                            if ("hougeng".equals(etUser.getText().toString()) &&
+                                    "广东海洋大学".equals(etPwd.getText().toString())) {
+                                Toast.makeText(getContext(),"修改成功",Toast.LENGTH_LONG).show();
+                                return true;
+                            }
+                            tvError.setText("信息输入有误/连接不上服务器");
+                            return false;
+                        })
+                        .setNegative("取消", null)
+                        .show(getChildFragmentManager());
+            }
+        });
 
         btn_user_response.setOnClickListener(new View.OnClickListener() {
             @Override
