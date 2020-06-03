@@ -2,6 +2,7 @@ package com.aftermarket.android.fgment;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -10,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -102,6 +104,39 @@ public class MineFragment extends Fragment {
         Button btn_logout = (Button) getActivity().findViewById(R.id.logout);
         Button btn_about = (Button) getActivity().findViewById(R.id.btn_about);
         Button btn_picture = (Button) getActivity().findViewById(R.id.but_picture);
+        Button btn_add_user_message = (Button) getActivity().findViewById(R.id.btn_add_user_message);
+        Button btn_user_response = (Button) getActivity().findViewById(R.id.btn_user_response);
+
+        btn_user_response.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogFragment = new CircleDialog.Builder()
+                        //.setTypeface(typeface)
+                        .setCanceledOnTouchOutside(false)
+                        .setCancelable(true)
+                        .setTitle("反馈信息")
+                        .setInputHint("反馈或者投诉内容，请写上您的具体问题和电话号码，会有专人负责")
+                        .setInputHeight(300)
+                        .setInputShowKeyboard(true)
+                        .setInputEmoji(true)
+                        .setInputCounter(100)
+//                        .setInputCounter(20, (maxLen, currentLen) -> maxLen - currentLen + "/" + maxLen)
+                        .configInput(params -> {
+                            params.styleText = Typeface.BOLD;
+                        })
+                        .setNegative("取消", null)
+                        .setPositiveInput("确定", (text, v) -> {
+                            if (TextUtils.isEmpty(text)) {
+                                Toast.makeText(getContext(), "请输入内容", Toast.LENGTH_SHORT).show();
+                                return false;
+                            } else {
+                                Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+                                return true;
+                            }
+                        })
+                        .show(getChildFragmentManager());
+            }
+        });
 
         btn_picture.setOnClickListener(new View.OnClickListener() {
             @Override
