@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -57,6 +58,8 @@ public class BaseActivity extends AppCompatActivity {
 
         @Override
         public void onReceive(final Context context, Intent intent) {
+            String message = intent.getStringExtra("test");
+            Log.i("MyBroadCastReciver"," -- 接收到的消息 -- = "+message);
             AlertDialog.Builder builder = new AlertDialog.Builder(context);//在当前上下文建立对话框
             builder.setTitle("警告");
             builder.setMessage("你已经被强制下线，请重新登录");

@@ -33,7 +33,8 @@ public class LoginService {
     public LoginService(Context icontext){
         context=icontext;
 //        baseUrl="http://192.168.43.142:8088";
-        baseUrl="http://192.168.1.121:8088";
+//        baseUrl="http://192.168.1.121:8088";
+        baseUrl="http://192.168.1.4:8088";
 
         cookieJar = new PersistentCookieJar(new SetCookieCache(),new SharedPrefsCookiePersistor(context));
 
